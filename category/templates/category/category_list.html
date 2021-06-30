@@ -1,0 +1,119 @@
+{% extends "users/layout.html" %}
+{% load static  %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+ <!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css'%}">
+  <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css'%}">
+  <link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css'%}">
+
+{% endblock %}
+{% block header_title %}
+    Category View
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item active">View</li>
+            </ol>
+{% endblock %}
+{% block body%}
+  <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Catgory Reports</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                   {% for cate in categories %}
+                       <tr>
+                       <td> {{ cate.id }}</td>
+                       <td>{{ cate.name }}</td>
+                       <td>{{ cate.description | safe}}</td>
+                       <td><a class="btn btn-info btn-sm" href="{% url 'category-update' cate.id %}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'category-delete' cate.id %}">
+                              <i class="fas fa-trash">
+                              </i>
+                              Delete
+                          </a>
+                       </td>
+
+                       </tr>
+                   {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                   <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'plugins/jszip/jszip.min.js'%}"></script>
+<script src="{% static 'plugins/pdfmake/pdfmake.min.js'%}"></script>
+<script src="{% static 'plugins/pdfmake/vfs_fonts.js'%}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js'%}"></script>
+
+    <!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+{% endblock %}

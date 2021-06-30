@@ -1,0 +1,61 @@
+{% extends "users/layout.html" %}
+{% load static  %}
+{% block extra_css %}
+     <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css'%}">
+
+{% endblock %}
+{% block header_title %}
+    Category Delete
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item active">Delete </li>
+            </ol>
+{% endblock %}
+{% block body%}
+     <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Are you sure you want to delete ? </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="quickForm" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <ul>
+                  <li> Name : {{ object.name }}</li>
+                  <li> Descrition : </br> {{ object.description | safe }}</li>
+              </ul>
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                  <a href="{% url 'category-view' %}" class="btn btn-info">Cancel</a>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
