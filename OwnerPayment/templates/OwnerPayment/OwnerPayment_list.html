@@ -9,12 +9,12 @@
 
 {% endblock %}
 {% block header_title %}
-    Category View
+    Owner Payment Details
 {% endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item"><a href="#">Payment</a></li>
               <li class="breadcrumb-item active">View</li>
             </ol>
 {% endblock %}
@@ -28,46 +28,64 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Catgory Reports</h3>
+                <h3 class="card-title">Payment Methods</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                      <th>ID</th>
+                      <th>Type</th>
+                      <th>Bank Name</th>
+                      <th>Bank Branch</th>
+                      <th>Account No.</th>
+                      <th>IFSC Code</th>
+                      <th>Phone</th>
+                      <th>UPI Id</th>
+                      <th>Balance</th>
+                      <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                   {% for cate in categories %}
+                   {% for pay in OwnerPayments %}
                        <tr>
-                       <td> {{ cate.id }}</td>
-                       <td>{{ cate.name }}</td>
-                       <td>{{ cate.description | safe}}</td>
-                       <td><a class="btn btn-info btn-sm" href="{% url 'category-update' cate.id %}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                        <a class="btn btn-danger btn-sm" href="{% url 'category-delete' cate.id %}">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                       </td>
+                           <td> {{ pay.id }}</td>
+                           <td>{{ pay.type }}</td>
+                           <td>{{ pay.bank_name}}</td>
+                           <td>{{ pay.bank_branch }}</td>
+                           <td>{{ pay.account_no }}</td>
+                           <td>{{ pay.ifsc_code }}</td>
+                           <td>{{ pay.phone }}</td>
+                           <td>{{ pay.upi }}</td>
+                           <td>{{ pay.balance }}</td>
+                           <td><a class="btn btn-info btn-sm" href="{% url 'payment-update' pay.id %}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Edit
+                              </a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'payment-delete' pay.id %}">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a>
+                           </td>
 
                        </tr>
                    {% endfor %}
                   </tbody>
                   <tfoot>
                   <tr>
-                   <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                      <th>ID</th>
+                      <th>Type</th>
+                      <th>Bank Name</th>
+                      <th>Bank Branch</th>
+                      <th>Account No.</th>
+                      <th>IFSC Code</th>
+                      <th>Phone</th>
+                      <th>UPI Id</th>
+                      <th>Balance</th>
+                      <th>Action</th>
                   </tr>
                   </tfoot>
                 </table>

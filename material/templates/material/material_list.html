@@ -9,12 +9,12 @@
 
 {% endblock %}
 {% block header_title %}
-    Category View
+    Material View
 {% endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item"><a href="#">Material</a></li>
               <li class="breadcrumb-item active">View</li>
             </ol>
 {% endblock %}
@@ -28,7 +28,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Catgory Reports</h3>
+                <h3 class="card-title">Material Records</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -42,17 +42,17 @@
                   </tr>
                   </thead>
                   <tbody>
-                   {% for cate in categories %}
+                   {% for mat in materials %}
                        <tr>
-                       <td> {{ cate.id }}</td>
-                       <td>{{ cate.name }}</td>
-                       <td>{{ cate.description | safe}}</td>
-                       <td><a class="btn btn-info btn-sm" href="{% url 'category-update' cate.id %}">
+                       <td> {{ mat.id }}</td>
+                       <td>{{ mat.name }}</td>
+                       <td>{{ mat.description | safe}}</td>
+                       <td><a class="btn btn-info btn-sm" href="{% url 'material-update' mat.id %}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                        <a class="btn btn-danger btn-sm" href="{% url 'category-delete' cate.id %}">
+                        <a class="btn btn-danger btn-sm" href="{% url 'material-delete' mat.id %}">
                               <i class="fas fa-trash">
                               </i>
                               Delete

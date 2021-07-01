@@ -1,18 +1,14 @@
 {% extends "user/layout.html" %}
-{% load static  %}
+{% load static %}
 {% load crispy_forms_field %}
 {% block extra_css %}
-     <!-- summernote -->
+       <!-- summernote -->
   <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css'%}">
-
 {% endblock %}
-{% block header_title %}
-    Category Entry
-{% endblock %}
-
+{% block header_title %}Material entry{% endblock %}
 {% block breadcrumb %}
     <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item"><a href="#">Material</a></li>
               <li class="breadcrumb-item active">New</li>
             </ol>
 {% endblock %}
@@ -26,7 +22,7 @@
             <!-- jquery validation -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">New Category Form </h3>
+                <h3 class="card-title">New Material Form </h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->

@@ -9,12 +9,12 @@
 
 {% endblock %}
 {% block header_title %}
-    Category View
+    Supplier View
 {% endblock %}
 
 {% block breadcrumb %}
     <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item"><a href="#">Supplier</a></li>
               <li class="breadcrumb-item active">View</li>
             </ol>
 {% endblock %}
@@ -28,46 +28,55 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Catgory Reports</h3>
+                <h3 class="card-title">Supplier Details</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                      <th>ID</th>
+                      <th>Company Name</th>
+                      <th>Phone</th>
+                      <th>GST No.</th>
+                      <th>Email </th>
+                      <th>Remarks</th>
+                      <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                   {% for cate in categories %}
+                   {% for sup in supply %}
                        <tr>
-                       <td> {{ cate.id }}</td>
-                       <td>{{ cate.name }}</td>
-                       <td>{{ cate.description | safe}}</td>
-                       <td><a class="btn btn-info btn-sm" href="{% url 'category-update' cate.id %}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                        <a class="btn btn-danger btn-sm" href="{% url 'category-delete' cate.id %}">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                       </td>
+                           <td> {{ sup.id }}</td>
+                           <td>{{ sup.company_name }}</td>
+                           <td>{{ sup.phone }}</td>
+                           <td>{{ sup.gst }}</td>
+                           <td>{{ sup.email }}</td>
+                           <td>{{ sup.remarks | safe}}</td>
+                           <td><a class="btn btn-info btn-sm" href="{% url 'supplier-update' sup.id %}">
+                                  <i class="fas fa-pencil-alt">
+                                  </i>
+                                  Edit
+                              </a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'supplier-delete' sup.id %}">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Delete
+                              </a>
+                           </td>
 
                        </tr>
                    {% endfor %}
                   </tbody>
                   <tfoot>
                   <tr>
-                   <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Action</th>
+                      <th>ID</th>
+                      <th>Company Name</th>
+                      <th>Phone</th>
+                      <th>GST No.</th>
+                      <th>Email </th>
+                      <th>Remarks</th>
+                      <th>Action</th>
                   </tr>
                   </tfoot>
                 </table>

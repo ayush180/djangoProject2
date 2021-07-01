@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{%  load static %}
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css'%}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css'%}">
+  {% block extra_css %}
+
+    {% endblock %}
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -27,7 +30,7 @@
         <a href="../../index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+        <a href="#" class="nav-link">Contact</a>
       </li>
     </ul>
 
@@ -836,13 +839,15 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Blank Page</h1>
+            <h1>{% block header_title %}Blank Page{% endblock %}</h1>
           </div>
           <div class="col-sm-6">
+              {% block breadcrumb %}
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Blank Page</li>
             </ol>
+              {% endblock %}
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -906,5 +911,8 @@
 <script src="{% static 'dist/js/adminlte.min.js'%}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'dist/js/demo.js'%}"></script>
+
+{% block extra_js %}
+{% endblock %}
 </body>
 </html>
