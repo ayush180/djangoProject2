@@ -1,0 +1,93 @@
+{% extends "user/layout.html" %}
+{% load static  %}
+{% block extra_css %}
+{% endblock %}
+{% block header_title %}
+    Employee Detail
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Employee</a></li>
+              <li class="breadcrumb-item active">Delete </li>
+            </ol>
+{% endblock %}
+{% block body %}
+      <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="{{ object.photo.url }}"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">{{ object.first_name }} {{ object.middle_name }} {{ object.last_name }}</h3>
+
+                <p class="text-muted text-center">{{ object.post }}</p>
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+              <div class="col">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                <p class="text-muted">{{ object.flat_no }} {{ object.st_name }} {{ object.area }} {{ object.city }} {{ object.state }} {{ object.country }} {{ object.pincode }}</p>
+
+                <hr>
+
+                <strong><i class="fas fa-birthday-cake"></i> D.O.B</strong>
+
+                  <p class="text-muted">{{ object.dob }}</p>
+
+                <hr>
+                 <strong><i class="fas fa-file-contract"></i> D.O.J</strong>
+
+                  <p class="text-muted">{{ object.doj }}</p>
+
+                <hr>
+                   <strong><i class="fas fa-mail-bulk"></i> Email</strong>
+
+                  <p class="text-muted">{{ object.email }}</p>
+
+                <hr>
+                   <strong><i class="fas fa-phone"></i> Phone</strong>
+
+                  <p class="text-muted">{{ object.phone }}</p>
+
+                <hr>
+                   <strong><i class="fas fa-transgender"></i> Gender</strong>
+
+                  <p class="text-muted">{{ object.gender }}</p>
+
+                <hr>
+
+              </div>
+            </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div></div>
+          <!-- /.col -->
+          <!-- /.col -->
+
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}

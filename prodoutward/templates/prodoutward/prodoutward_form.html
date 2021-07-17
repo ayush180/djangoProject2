@@ -1,0 +1,111 @@
+{% load crispy_forms_field %}
+{% load mathfilters %}
+
+ <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+
+      </div>
+      <div class="modal-body">
+         <form  id="quickForm" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                  <div class="form-group">
+                    <label for="name">Product Name - {{ form.id }}</label>
+                    {% crispy_field form.prod  %}
+                      <div>
+                           {%  if form.prod.errors  %}
+                               {% for error in form.prod.errors %}
+                                   <span class="invalid-feedback"> {{  error }}</span>
+                               {% endfor %}
+                          {% endif %}
+                      </div>
+                  </div></div>
+                            <div class="col">
+                                  <div class="form-group">
+                                    <label for="description">Quantity </label>
+                                    {% crispy_field form.quantity %}
+                                  </div></div></div>
+                            <div class="row">
+                            <div class="col">
+                    <div class="form-group">
+                    <label for="description">Rate </label>
+                    {% crispy_field form.rate %}
+                    </div></div>
+                    <div class="col">
+                    <div class="form-group">
+                    <label for="description">Price </label>
+                    {% crispy_field form.price  %}
+
+                    </div></div>
+                        <div class="col">
+                    <div class="form-group">
+                    <label for="description" >Discount </label>
+                    {% crispy_field form.discount %}
+                    </div></div>
+                        <div class="col">
+                    <div class="form-group">
+                    <label for="description" >GST </label>
+                    {% crispy_field form.gst %}
+                  </div>
+                        </div></div>
+
+
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+      </div>
+
+    </div>
+  </div>
+
+
+ <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script>
+    // for price calculations
+    document.addEventListener('DOMContentLoaded',function(){
+
+        // for rate
+         document.querySelector("#id_rate").focusout=function(){
+             let qty=document.querySelector("#id_quantity").value;
+             let rate=document.querySelector("#id_rate").value;
+             document.querySelector("#id_price").value=rate*qty;
+
+         }
+         // for discount
+         document.querySelector("#id_discount").focusout=function(){
+             let qty=document.querySelector("#id_quantity").value;
+             let rate=document.querySelector("#id_rate").value;
+             let price=qty*rate;
+             let discount=this.value;  //
+             let gst=document.querySelector("#id_gst").value;
+             document.querySelector("#id_price").value=price+((price*gst)/100)-((price*discount)/100);
+
+         }
+         // for gst
+        document.querySelector("#id_gst").focusout=function(){
+             let qty=document.querySelector("#id_quantity").value;
+             let rate=document.querySelector("#id_rate").value;
+             let price=qty*rate;
+             let gst=this.value;  // 10
+             let discount=document.querySelector("#id_discount").value;
+             document.querySelector("#id_price").value=price+((price*gst)/100)-((price*discount)/100);
+
+         }
+
+    })
+
+</script>

@@ -1,0 +1,89 @@
+{% extends "user/layout.html" %}
+{% load static  %}
+{% block extra_css %}
+{% endblock %}
+{% block header_title %}
+   Product Detail
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Product</a></li>
+              <li class="breadcrumb-item active">Detail </li>
+            </ol>
+{% endblock %}
+{% block body %}
+      <section class="content">
+      <div class="container-fluid">
+
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+              <div class="col">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Detail</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+
+                <strong><i class="fas fa-cart-arrow-down"></i> Name</strong>
+
+                <p class="text-muted">{{ object.name }}</p>
+
+                <hr>
+
+                <strong><i class="fas fa-universal-access"></i> Model No.</strong>
+
+                  <p class="text-muted">{{ object.model_no }}</p>
+
+                <hr>
+                   <strong><i class="fas fa-cheese"></i> Main Category</strong>
+
+                  <p class="text-muted">{{ object.maincategory }}</p>
+
+                <hr>
+                   <strong><i class="fas fa-sun"></i> Sub Category</strong>
+
+                  <p class="text-muted">{{ object.subcat }}</p>
+
+                <hr>
+                   <strong><i class="fas fa-stamp"></i> Material</strong>
+
+                  <p class="text-muted">{{ object.materials }}</p>
+
+                <hr>
+                        <strong><i class="fas fa-database"></i> Size</strong>
+
+                  <p class="text-muted">{{ object.size }}</p>
+
+                <hr>
+                      <strong><i class="fas fa-weight"></i> Quantity</strong>
+
+                  <p class="text-muted">{{ object.quantity }}</p>
+
+                <hr>
+                      <strong><i class="fas fa-paint-brush"></i> Color</strong>
+
+                  <p class="text-muted">{{ object.color }}</p>
+
+                <hr>
+                      <strong><i class="fas fa-landmark"></i> Product Company Name</strong>
+
+                  <p class="text-muted">{{ object.product_comp_namer }}</p>
+
+                <hr>
+              </div>
+            </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div></div>
+          <!-- /.col -->
+          <!-- /.col -->
+
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}

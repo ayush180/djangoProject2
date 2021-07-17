@@ -1,0 +1,196 @@
+{% extends "user/layout.html" %}
+{% load static  %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+     <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css'%}">
+
+{% endblock %}
+{% block header_title %}
+    Customer Payment Detail Entry
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Customer Payment Detail</a></li>
+              <li class="breadcrumb-item active">Add</li>
+            </ol>
+{% endblock %}
+{% block body%}
+     <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">New Customer Payment Detail Form </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="quickForm" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                         <div class="col">
+                            <div class="form-group">
+                                <label>Bill Payment Date</label>
+                                {% crispy_field form.dates %}
+                            </div>
+                        </div>
+                         <div class="col">
+                            <div class="form-group">
+                                <label>Bill For Payment</label>
+                                {% crispy_field form.bills %}
+                            </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group">
+                            <label for="type">Type </label>
+                            {% crispy_field form.type  %}
+                          </div></div>
+                          </div>
+                               <div class="row">
+                            <div class="col">
+                            <div class="form-group" id="bank">
+                                <label for="bank_name">Bank Name </label>
+                            {% crispy_field form.bank_name  %}
+                          </div></div>
+                            <div class="col">
+                          <div class="form-group" id="bank1">
+                            <label for="bank_branch">Bank Branch </label>
+                            {% crispy_field form.bank_branch %}
+                          </div></div>
+                                <div class="col">
+                             <div class="form-group" id="bank2">
+                            <label for="account_no">Account No. </label>
+                            {% crispy_field form.account_no  %}
+                          </div></div>
+                                <div class="col">
+                             <div class="form-group" id="bank3">
+                            <label for="ifsc_code">IFSC Code </label>
+                            {% crispy_field form.ifsc_code  %}
+                             </div></div></div>
+                                <div class="row">
+                                <div class="col">
+                             <div class="form-group" id="upi">
+                            <label for="phone">Phone </label>
+                            {% crispy_field form.phone  %}
+                          </div></div>
+                                <div class="col">
+                             <div class="form-group" id="upi1">
+                            <label for="upi">UPI Id </label>
+                            {% crispy_field form.upi  %}
+                             </div></div></div>
+
+                            <div class="row">
+                            <div class="col">
+                            <div class="form-group" id="check">
+                            <label for="balance">Cheque No. </label>
+                            {% crispy_field form.check_no  %}
+                          </div></div>
+                                <div class="col">
+                            <div class="form-group" id="check1">
+                            <label for="balance">Cheque Date </label>
+                            {% crispy_field form.check_date  %}
+                            </div></div></div>
+                        <div class="row">
+                           <div class="col-6">
+                                    <div class="form-group" id="cash">
+                            <label for="balance">Amount </label>
+                            {% crispy_field form.cash  %}
+                          </div></div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+    <script>
+    document.addEventListener('DOMContentLoaded',function (){
+        document.querySelector("#id_type").onchange=function(){
+            console.log("inside onchange ")
+            if(this.value==='cash'){
+                document.querySelector("#cash").style.display="block"
+                document.querySelector("#bank").style.display="none"
+                document.querySelector("#bank1").style.display="none"
+                document.querySelector("#bank2").style.display="none"
+                document.querySelector("#bank3").style.display="none"
+                document.querySelector("#check").style.display="none"
+                document.querySelector("#check1").style.display="none"
+                document.querySelector("#upi").style.display="none"
+                document.querySelector("#upi1").style.display="none"
+                document.querySelector("#customer").style.display="block"
+
+            }
+            else if (this.value==='upi'){
+                document.querySelector("#cash").style.display="block"
+                document.querySelector("#bank").style.display="none"
+                document.querySelector("#bank1").style.display="none"
+                document.querySelector("#bank2").style.display="none"
+                document.querySelector("#bank3").style.display="none"
+                document.querySelector("#check").style.display="none"
+                document.querySelector("#check1").style.display="none"
+                document.querySelector("#upi").style.display="block"
+                document.querySelector("#upi1").style.display="block"
+                document.querySelector("#customer").style.display="block"
+            }
+            else if(this.value==='cheque'){
+                document.querySelector("#cash").style.display="block"
+                document.querySelector("#bank").style.display="none"
+                document.querySelector("#bank1").style.display="none"
+                document.querySelector("#bank2").style.display="none"
+                document.querySelector("#bank3").style.display="none"
+                document.querySelector("#check").style.display="block"
+                document.querySelector("#check1").style.display="block"
+                document.querySelector("#upi").style.display="none"
+                document.querySelector("#upi1").style.display="none"
+                document.querySelector("#customer").style.display="block"
+            }
+            else if(this.value==='netbank'){
+                document.querySelector("#cash").style.display="block"
+                document.querySelector("#bank").style.display="block"
+                document.querySelector("#bank1").style.display="block"
+                document.querySelector("#bank2").style.display="block"
+                document.querySelector("#bank3").style.display="block"
+                document.querySelector("#check").style.display="none"
+                document.querySelector("#check1").style.display="none"
+                document.querySelector("#upi").style.display="none"
+                document.querySelector("#upi1").style.display="none"
+                 document.querySelector("#customer").style.display="block"
+            }
+        }
+    })
+    </script>
+
+{% endblock %}
+{% block extra_js %}
+    <!-- Summernote -->
+<script src="{% static 'plugins/summernote/summernote-bs4.min.js'%}"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('#id_description').summernote()
+
+
+  })
+</script>
+{% endblock %}

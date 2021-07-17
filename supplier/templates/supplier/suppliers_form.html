@@ -33,80 +33,82 @@
               <form id="quickForm" method="post">
                   {% csrf_token %}
                 <div class="card-body">
-
-
-                  <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                    <div class="form-group">
                     <label for="name">Company Name </label>
                     {% crispy_field form.company_name  %}
-                  </div>
+                    </div></div>
+                        <div class="col">
                   <div class="form-group">
                     <label for="name">GST No. </label>
                     {% crispy_field form.gst  %}
-                  </div>
+                  </div></div></div>
                    <div class="row">
-                   <div class="col-md-6">
+                   <div class="col">
                   <div class="form-group">
                     <label for="description">First Name </label>
                       {% crispy_field form.first_name %} </div> </div>
-                       <div class="col-md-6">
+                       <div class="col">
                   <div class="form-group">
                     <label for="description">Middle Name </label>
                       {% crispy_field form.middle_name %}</div></div>
-                    <div class="col-md-6">
+                    <div class="col">
                   <div class="form-group">
                       <label for="description">Last Name </label>
-                      {% crispy_field form.last_name %} </div></div>
-                       <div class="col-md-6">
+                      {% crispy_field form.last_name %} </div></div></div>
+                    <div class="row">
+                       <div class="col">
                         <div class="form-group">
                             <label for="name">Email ID </label>
-                            {% crispy_field form.email  %}</div></div></div>
-                     <div class="row">
-                   <div class="col-md-6">
+                            {% crispy_field form.email  %}</div></div>
+                   <div class="col">
                     <div class="form-group">
                     <label for="name">Phone </label>
                         {% crispy_field form.phone  %}</div></div>
-                         <div class="col-md-6">
+                         <div class="col">
                     <div class="form-group">
                      <label for="name">Office No. </label>
                         {% crispy_field form.office_no %}</div></div></div>
 
                      <div class="row">
-                   <div class="col-md-6">
+                   <div class="col">
                     <div class="form-group">
                     <label for="description">Residence No. </label>
                         {% crispy_field form.flat_no %} </div></div>
-                         <div class="col-md-6">
+                         <div class="col">
                     <div class="form-group">
                     <label for="description">Street  </label>
                         {% crispy_field form.st_name %} </div></div>
-                         <div class="col-md-6">
+                         <div class="col">
                     <div class="form-group">
                     <label for="description">Area </label>
-                        {% crispy_field form.area %} </div></div>
-                         <div class="col-md-6">
+                        {% crispy_field form.area %} </div></div></div>
+                    <div class="row">
+                         <div class="col">
                     <div class="form-group">
                        <label for="description">City </label>
                         {% crispy_field form.city %} </div></div>
-                         <div class="col-md-6">
+                         <div class="col">
                     <div class="form-group">
                     <label for="description">Pincode  </label>
                         {% crispy_field form.pincode %}</div></div>
-                         <div class="col-md-6">
+                         <div class="col">
                     <div class="form-group">
                     <label for="description"> State </label>
                         {% crispy_field form.state %}</div></div>
-                         <div class="col-md-6">
+                         <div class="col">
                     <div class="form-group">
                     <label for="description"> Country </label>
                         {% crispy_field form.country %}</div></div>
                   </div>
 
                     <div class="row">
-                   <div class="col-md-6">
+                   <div class="col">
                     <div class="form-group">
                     <label for="contact_person_name">Contact Person Name </label>
                         {% crispy_field form.contact_person_name  %}</div></div>
-                        <div class="col-md-6">
+                        <div class="col">
                     <div class="form-group">
                         <label for="contact_person_phone">Contact Person - Moblie No. </label>
                     {% crispy_field form.contact_person_phone  %}</div></div></div>

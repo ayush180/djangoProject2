@@ -1,0 +1,148 @@
+{% extends "user/layout.html" %}
+{% load static %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+
+{% endblock %}
+{% block header_title %}Product Purchase Inward Bill Entry{% endblock %}
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Product Purchase Inward Bill</a></li>
+              <li class="breadcrumb-item active">New</li>
+            </ol>
+{% endblock %}
+{% block body%}
+     <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col">
+
+
+              <!-- jquery validation -->
+
+              <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Product Purchase Inward Bill Form </h3>
+              </div>
+              <!-- /.card-header -->
+
+              <!-- form start -->
+              <form id="quickForm"  method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+
+                 <div class="row">
+                    <div class="col-4">
+                            <div class="form-group">
+                            <label for="name">Bill Date </label>
+                            {% crispy_field form.date  %}
+                          </div>
+                    </div>
+                     <div class="col-4">
+                            <div class="form-group">
+                            <label for="name">Supplier </label>
+                            {% crispy_field form.sup  %}
+                          </div>
+                    </div>
+                     <div class="col-4">
+                           <div class="form-group">
+                                <a href="{% url 'prodinward-new' %}" onclick="return !window.open(this.href, 'product update', 'width=700,height=600')"
+                                     target="_blank"> Add Product </a>
+
+                          </div>
+                     </div>
+                 </div>
+
+                          <div class="form-group">
+                                    <label for="description">total amount </label>
+                                    {% crispy_field form.total 'value' total %}
+                                  </div>
+
+
+
+                        <div class="form-group">
+                        <label for="description" id="discount_l">Discount </label>
+                            {% crispy_field form.discount %}
+                        </div>
+
+                         <div class="form-group">
+                                <label for="description" id="gst_l">GST </label>
+                                {% crispy_field form.gst %}
+                        </div>
+
+                        <div class="form-group">
+                        <label for="description">Net Amount </label>
+                        {% crispy_field form.net_amount 'value' total  %}
+                        </div>
+
+
+                            <div class="form-group" >
+                            <label for="description"> Due amount</label>
+                            {% crispy_field form.due_amount 'value' total  %}
+                          </div>
+
+
+
+            </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col">
+               <div class="card card-primary">
+                      <div class="card-header">
+                        <h3 class="card-title">Product View </h3>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group">
+                                    {% include "prodinward/prodinward_list.html" %}
+                        </div>
+                      </div>
+               </div>
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
+{% block extra_js %}
+    <script>
+      document.addEventListener('DOMContentLoaded',function(){
+
+          document.querySelector("#id_gst").focusout=function(){
+
+              let gst=document.querySelector("#id_gst").value;
+              document.querySelector("#gst_l").innerHTML=` GST ${gst}%`;
+              let total_amount=document.querySelector("#id_total").value;
+              let r = document.querySelector("#id_gst").value=(gst*total_amount)/100;
+              let discount = document.querySelector("#id_discount").value;
+              document.querySelector("#id_net_amount").value= total_amount-discount+r
+              document.querySelector("#id_due_amount").value=total_amount-discount+r
+
+          }
+          // for inward purchase discount
+          document.querySelector("#id_discount").focusout=function() {
+
+              let discount = document.querySelector("#id_discount").value;
+              document.querySelector("#discount_l").innerHTML = ` Discount ${discount}%`;
+              let total_amount = document.querySelector("#id_total").value;
+              let r = document.querySelector("#id_discount").value=(discount*total_amount)/100;
+              let gst = document.querySelector("#id_gst").value;
+              document.querySelector("#id_net_amount").value= total_amount +gst- r
+              document.querySelector("#id_due_amount").value=total_amount+gst-r
+          }
+      })
+    </script>
+
+
+{% endblock %} 

@@ -1,0 +1,102 @@
+{% extends "user/layout.html" %}
+{% load static  %}
+{% load crispy_forms_field %}
+{% block extra_css %}
+     <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.min.css'%}">
+
+{% endblock %}
+{% block header_title %}
+    Subcategory Entry
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Subcategory</a></li>
+              <li class="breadcrumb-item active">New</li>
+            </ol>
+{% endblock %}
+{% block body%}
+     <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">New Subcategory Form </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="quickForm" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="name">Name </label>
+                    {% crispy_field form.name  %}
+                      {% if form.name.errors %}
+                        {% for error in form.name.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Descritpion </label>
+                    {% crispy_field form.description %}
+                      {% if form.description.errors %}
+                        {% for error in form.description.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                  </div>
+                    <div class="form-group">
+                    <label for="name">Category </label>
+                    {% crispy_field form.maincategory  %}
+                         {% if form.maincategory.errors %}
+                        {% for error in form.maincategory.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                  </div>
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+            </div>
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock %}
+{% block extra_js %}
+    <!-- Summernote -->
+<script src="{% static 'plugins/summernote/summernote-bs4.min.js'%}"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('#id_description').summernote()
+
+
+  })
+</script>
+{% endblock %}

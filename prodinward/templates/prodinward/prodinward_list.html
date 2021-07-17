@@ -1,0 +1,56 @@
+{% load mathfilters %}
+<table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                      <th>Rate</th>
+                      <th>Price</th>
+                      <th>Discount</th>
+                      <th>GST</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                   {% for mat in products %}
+                       <tr>
+                       <td> {{ mat.id }}</td>
+                       <td>{{ mat.prod.name }}</td>
+                       <td>{{ mat.quantity}}</td>
+                           <td>{{ mat.rate }}</td>
+                           <td>{{ mat.rate | mul:mat.quantity }}</td>
+                           <td>{{ mat.discount }}</td>
+                           <td>{{ mat.gst }}</td>
+                       <td>
+                           <a class="btn btn-info btn-xs" href="{% url 'prodinward-update' mat.id %}" onclick="return !window.open(this.href, 'product update', 'width=700,height=600')"
+                                target="_blank">
+
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a><br>
+                        <a class="btn btn-danger btn-xs" href="{% url 'prodinward-delete' mat.id %}" onclick="return !window.open(this.href, 'product update', 'width=700,height=600')"
+                                target="_blank">
+                           <i class="fas fa-trash">
+                              </i>
+                              Del
+                          </a>
+                       </td>
+
+                       </tr>
+                   {% endfor %}
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                   <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                      <th>Rate</th>
+                      <th>Price</th>
+                      <th>Discount</th>
+                      <th>GST</th>
+                    <th>Action</th>
+                  </tr>
+                  </tfoot>
+                </table>

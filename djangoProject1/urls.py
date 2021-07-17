@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LoginView,LogoutView
+from django .conf import settings
+from django.conf.urls.static import static
+from user.views import dashboard
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +29,17 @@ urlpatterns = [
     path("material/", include("material.urls")),
     path("ownerpayment/", include("OwnerPayment.urls")),
     path("supplier/", include("supplier.urls")),
+    path("customer/", include("customer.urls")),
+    path("employee/", include("employee.urls")),
+    path("subcategory/", include("subcategory.urls")),
+    path("product/", include("product.urls")),
+    path("supplierpay/", include("supplierpay.urls")),
+    path("customerpay/", include("customerpay.urls")),
+    path("prodinward/", include("prodinward.urls")),
+    path("prodoutward/", include("prodoutward.urls")),
+    path("inward_purchase/", include("inward_purchase.urls")),
+    path("outward_purchase/", include("outward_purchase.urls")),
+    path("loss/", include("loss.urls")),
+    path("dashboard/", dashboard, name="dashboard")
 
 ]
